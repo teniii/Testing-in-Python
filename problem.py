@@ -1,4 +1,10 @@
-from typing import List
+from typing import List, Tuple
+
+ANIMALS_MIN = 1
+ANIMALS_MAX = 16000
+
+ZOOS_MIN = 1
+ZOOS_MAX = 100000
 
 
 class Animal:
@@ -8,6 +14,9 @@ class Animal:
         self.y = y
 
     def is_inside_fence(self, fence_start_x: int, fence_start_y: int, fence_end_x: int, fence_end_y: int):
+        if fence_start_x > fence_end_x or fence_start_y > fence_end_y:
+            raise Exception("Zoo coordinates start from bottom-left corner!")
+
         if fence_start_x > self.x or fence_end_x < self.x:
             return False
         elif fence_start_y > self.y or fence_end_y < self.y:
@@ -42,16 +51,39 @@ def read_from_file():
     return no_animals, animal_coordinates, no_zoos, zoos_coordinates
 
 
-def main():
-    _, animals_coords, _, zoos_coords = read_from_file()
+def is_in_range(x: int, min_value: int, max_value: int) -> bool:
+    return min_value <= x <= max_value
+
+
+def solve_problem(no_animals: int, animals_coords: List[Tuple], no_zoos: int, zoos_coords: List[Tuple]) -> List[int]:
+    print(no_animals, animals_coords, no_zoos, zoos_coords)
+    if no_animals == None or animals_coords == None or no_zoos == None or zoos_coords == None:
+        raise Exception("Missing arguments!")
+
+    if not is_in_range(no_animals, ANIMALS_MIN, ANIMALS_MAX):
+        raise Exception("Number of animals not accepted!")
+
+    if not is_in_range(no_zoos, ZOOS_MIN, ZOOS_MAX):
+        raise Exception("Number of zoos not accepted!")
+
+    # for a_cx, ac_y in animals_coords:
+    #     if a_cx
 
     animals = [Animal(ac_x, ac_y) for ac_x, ac_y in animals_coords]
     animals_inside_list = [zoo.count_inside_animals()
                            for zoo in [Zoo(zc_x1, zc_y1, zc_x2, zc_y2, animals)
                                        for zc_x1, zc_y1, zc_x2, zc_y2 in zoos_coords]]
 
-    print(animals_inside_list)
+    return animals_inside_list
 
 
-if __name__ == "__main__":
+def main():
+    no_animals, animals_coords, no_zoos, zoos_coords = read_from_file()
+
+    # print(solve_problem(10000000, [], 2))
+
+    print(solve_problem(no_animals, animals_coords, no_zoos, zoos_coords))
+
+
+if __name__ == '__main__':
     main()
