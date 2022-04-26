@@ -1,6 +1,6 @@
 import unittest
 
-from problem import Zoo, Animal, solve_problem
+from problem import Zoo, Animal, solve_problem, OutOfBoundsException
 
 
 class MyTestCase(unittest.TestCase):
@@ -19,21 +19,6 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(zoo.x_end, 100)
         self.assertEqual(zoo.y_end, 100)
 
-    def test_wrong_zoo(self):
-        # with self.assertRaises(solve_problem(100000000, [], 2, [])) as cm:
-        #
-        # the_exception = cm.exception
-        # self.assertEqual(the_exception.error_code, 3)
-
-        # self.assertEqual(Exception("Number of animals not accepted!"),
-        #                  solve_problem(10000000, [], 2, []))
-        self.assertRaises(
-            Exception, lambda: solve_problem(10000000, [], 2))
-
-    # def test_wrong_zoo(self):
-    #     Zoo(100, 100, 0, 0, [])
-    #     with self.assertRaises() as cm:
-
     def test_animals_inside(self):
         animal = Animal(100, 5)
         self.assertEqual(
@@ -42,6 +27,10 @@ class MyTestCase(unittest.TestCase):
                 fence_end_x=1000,
                 fence_start_y=0,
                 fence_end_y=1000), True)
+
+    def test_too_many_animals(self):
+        with self.assertRaises(OutOfBoundsException):
+            solve_problem(387645332423, [], 2, [])
 
 
 if __name__ == '__main__':
