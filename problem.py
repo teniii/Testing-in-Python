@@ -1,10 +1,16 @@
+import itertools
+
 from typing import List, Tuple
 
-ANIMALS_MIN = 1
-ANIMALS_MAX = 16000
+from limits import ANIMALS_MIN, ANIMALS_MAX, ZOOS_MIN, ZOOS_MAX, COORD_MIN, COORD_MAX
 
-ZOOS_MIN = 1
-ZOOS_MAX = 100000
+
+class OutOfBoundsException(Exception):
+    """The provided number of elements is out of the accepted bounds"""
+
+
+class WrongZooOrientationException(Exception):
+    """The provided zoo cordinates don't start from the correct corner"""
 
 
 class Animal:
@@ -15,7 +21,8 @@ class Animal:
 
     def is_inside_fence(self, fence_start_x: int, fence_start_y: int, fence_end_x: int, fence_end_y: int):
         if fence_start_x > fence_end_x or fence_start_y > fence_end_y:
-            raise Exception("Zoo coordinates start from bottom-left corner!")
+            raise WrongZooOrientationException(
+                "Zoo coordinates start from bottom-left corner!")
 
         if fence_start_x > self.x or fence_end_x < self.x:
             return False
@@ -56,18 +63,20 @@ def is_in_range(x: int, min_value: int, max_value: int) -> bool:
 
 
 def solve_problem(no_animals: int, animals_coords: List[Tuple], no_zoos: int, zoos_coords: List[Tuple]) -> List[int]:
-    print(no_animals, animals_coords, no_zoos, zoos_coords)
+    # print(no_animals, animals_coords, no_zoos, zoos_coords)
     if no_animals == None or animals_coords == None or no_zoos == None or zoos_coords == None:
-        raise Exception("Missing arguments!")
+        raise OutOfBoundsException("Missing arguments!")
 
     if not is_in_range(no_animals, ANIMALS_MIN, ANIMALS_MAX):
-        raise Exception("Number of animals not accepted!")
+        raise OutOfBoundsException("Number of animals not accepted!")
 
     if not is_in_range(no_zoos, ZOOS_MIN, ZOOS_MAX):
-        raise Exception("Number of zoos not accepted!")
+        raise OutOfBoundsException("Number of zoos not accepted!")
 
-    # for a_cx, ac_y in animals_coords:
-    #     if a_cx
+    all_coords = list(itertools.chain(*(animals_coords+zoos_coords)))
+    for c in all_coords:
+        if not is_in_range(c, COORD_MIN, COORD_MAX):
+            raise Exception("Coordinate not accepted!")
 
     animals = [Animal(ac_x, ac_y) for ac_x, ac_y in animals_coords]
     animals_inside_list = [zoo.count_inside_animals()
@@ -79,8 +88,6 @@ def solve_problem(no_animals: int, animals_coords: List[Tuple], no_zoos: int, zo
 
 def main():
     no_animals, animals_coords, no_zoos, zoos_coords = read_from_file()
-
-    # print(solve_problem(10000000, [], 2))
 
     print(solve_problem(no_animals, animals_coords, no_zoos, zoos_coords))
 
