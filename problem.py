@@ -63,10 +63,6 @@ def is_in_range(x: int, min_value: int, max_value: int) -> bool:
 
 
 def solve_problem(no_animals: int, animals_coords: List[Tuple], no_zoos: int, zoos_coords: List[Tuple]) -> List[int]:
-    # print(no_animals, animals_coords, no_zoos, zoos_coords)
-    if no_animals == None or animals_coords == None or no_zoos == None or zoos_coords == None:
-        raise OutOfBoundsException("Missing arguments!")
-
     if not is_in_range(no_animals, ANIMALS_MIN, ANIMALS_MAX):
         raise OutOfBoundsException("Number of animals not accepted!")
 
@@ -76,7 +72,7 @@ def solve_problem(no_animals: int, animals_coords: List[Tuple], no_zoos: int, zo
     all_coords = list(itertools.chain(*(animals_coords+zoos_coords)))
     for c in all_coords:
         if not is_in_range(c, COORD_MIN, COORD_MAX):
-            raise Exception("Coordinate not accepted!")
+            raise OutOfBoundsException("Coordinate not accepted!")
 
     animals = [Animal(ac_x, ac_y) for ac_x, ac_y in animals_coords]
     animals_inside_list = [zoo.count_inside_animals()
