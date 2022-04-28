@@ -20,7 +20,7 @@ class Animal:
         self.y = y
 
     def is_inside_fence(self, fence_start_x: int, fence_start_y: int, fence_end_x: int, fence_end_y: int):
-        if fence_start_x > fence_end_x or fence_start_y > fence_end_y:
+        if fence_start_x >= fence_end_x or fence_start_y >= fence_end_y:
             raise WrongZooOrientationException(
                 "Zoo coordinates start from bottom-left corner!")
 
