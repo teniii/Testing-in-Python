@@ -57,7 +57,8 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(
                 no_animals=7,
-                animals_coords=[(0, 0), (1, 0), (2, 0), (0, 1), (1, 1), (0, 2), (0, 3)],
+                animals_coords=[(0, 0), (1, 0), (2, 0),
+                                (0, 1), (1, 1), (0, 2), (0, 3)],
                 no_zoos=2,
                 zoos_coords=[(0, 0, 1000, 1000),
                              (-1000, -1000, 0, 0)]
@@ -154,7 +155,8 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(
                 no_animals=6,
-                animals_coords=[(500, 500),(501, 500),(502, 500),(503, 500),(504, 500),(505, 500)],
+                animals_coords=[(500, 500), (501, 500), (502, 500),
+                                (503, 500), (504, 500), (505, 500)],
                 no_zoos=2,
                 zoos_coords=[(0, 0, 1000, 1000), (-1000, 0, -1000, 0)]
             )
@@ -190,9 +192,10 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(
                 no_animals=2,
-                animals_coords=[(500, 500),(501, 500)],
+                animals_coords=[(500, 500), (501, 500)],
                 no_zoos=4,
-                zoos_coords=[(0, 0, 1000, 1000),(0, 0, 1000, 1000),(0, 0, 1000, 1000),(0, 0, 1000, 1000)]
+                zoos_coords=[(0, 0, 1000, 1000), (0, 0, 1000, 1000),
+                             (0, 0, 1000, 1000), (0, 0, 1000, 1000)]
             )
 
     def test_success_zoo_upper_boundary(self):
