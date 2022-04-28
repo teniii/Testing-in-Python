@@ -21,7 +21,8 @@ class Animal:
 
     def is_inside_fence(self, fence_start_x: int, fence_start_y: int, fence_end_x: int, fence_end_y: int):
         if fence_start_x >= fence_end_x or fence_start_y >= fence_end_y:
-            raise WrongZooOrientationException("Coordinates start from left!")
+            raise WrongZooOrientationException(
+                "Zoo coordinates start from bottom-left corner!")
 
         if fence_start_x > self.x or fence_end_x < self.x:
             return False

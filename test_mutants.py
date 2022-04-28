@@ -9,7 +9,7 @@ from problem import (
 from limits import COORD_MAX, COORD_MIN
 
 
-class MyTestCase(unittest.TestCase):
+class WhiteboxStatement(unittest.TestCase):
     def test_valid_problem(self):
         self.assertEqual(
             solve_problem(
