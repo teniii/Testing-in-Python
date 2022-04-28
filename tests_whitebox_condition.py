@@ -22,29 +22,29 @@ class WhiteboxCondition(unittest.TestCase):
                              (-1000, -1000, 0, 0), (1, 0, 2, 2)]
             ), [5, 1, 3])
 
-    def sp_if_is_in_range_animal_false(self):
+    def test_sp_if_is_in_range_animal_false(self):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(2, [(0, 0), (1, 0)], 0, [])
 
-    def sp_if_is_in_range_animal_true(self):
+    def test_sp_if_is_in_range_animal_true(self):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(0, [], 0, [])
 
-    def sp_if_is_in_range_zoo_true(self):
+    def test_sp_if_is_in_range_zoo_true(self):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(2, [(0, 0), (1, 0)], 0, [])
 
-    def sp_if_is_in_range_zoo_false(self):
+    def test_sp_if_is_in_range_zoo_false(self):
         with self.assertRaises(OutOfBoundsException):
-            solve_problem(2, [(0, 0), (1, 0)], 2, [
+            solve_problem(2, [(0, 0), (1, 0)], 6, [
                           (0, 0, 1000, 1000), (-1000, -1000, 0, 0)])
 
-    def sp_if_is_in_range_all_coords_true(self):
+    def test_sp_if_is_in_range_all_coords_true(self):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(1, [(7 * COORD_MIN, 7 * COORD_MAX)],
                           1, [(0, 0, 1000, 1000), (-1000, -1000, 0, 0)])
 
-    def sp_if_is_in_range_all_coords_false(self):
+    def test_sp_if_is_in_range_all_coords_false(self):
         animals_coords = [(1, 1), (30, 30), (80, 80)]
         zoo_coords = [(0, 0, 100, 100)]
         self.assertEqual(solve_problem(
@@ -58,27 +58,27 @@ class WhiteboxCondition(unittest.TestCase):
     # min_value <= x
     # ===||||||===
 
-    def if_is_in_range_min_false(self):
+    def test_if_is_in_range_min_false(self):
         self.assertFalse(is_in_range(10, 11, 20))
 
-    def if_is_in_range_min_true(self):
+    def test_if_is_in_range_min_true(self):
         self.assertTrue(is_in_range(10, 0, 20))
     # ===||||||===
     # x <= max_value
     # ===||||||===
 
-    def if_is_in_range_max_false(self):
+    def test_if_is_in_range_max_false(self):
         self.assertFalse(is_in_range(10, 0, 9))
 
-    def if_is_in_range_max_true(self):
+    def test_if_is_in_range_max_true(self):
         self.assertTrue(is_in_range(10, 0, 10))
 
-    def zoo_count_is_inside_fence_true(self):
+    def test_zoo_count_is_inside_fence_true(self):
         animal = Animal(10, 10)
         zoo = Zoo(0, 0, 100, 100, [animal])
         self.assertEqual(zoo.count_inside_animals(), 1)
 
-    def zoo_count_is_inside_fence_false(self):
+    def test_zoo_count_is_inside_fence_false(self):
         animal = Animal(-10, -10)
         zoo = Zoo(0, 0, 100, 100, [animal])
         self.assertEqual(zoo.count_inside_animals(), 0)
@@ -87,12 +87,12 @@ class WhiteboxCondition(unittest.TestCase):
     # fence_start_x >= fence_end_x
     # ===||||||===
 
-    def animal_is_inside_fence_x_true(self):
+    def test_animal_is_inside_fence_x_true(self):
         animal = Animal(1, 1)
         with self.assertRaises(WrongZooOrientationException):
             animal.is_inside_fence(10, 0, 0, 10)
 
-    def animal_is_inside_fence_x_false(self):
+    def test_animal_is_inside_fence_x_false(self):
         animal = Animal(2, 2)
         self.assertFalse(animal.is_inside_fence(0, 0, 1, 1))
 
@@ -100,12 +100,12 @@ class WhiteboxCondition(unittest.TestCase):
     # fence_start_y >= fence_end_y
     # ===||||||===
 
-    def animal_is_inside_fence_y_true(self):
+    def test_animal_is_inside_fence_y_true(self):
         animal = Animal(1, 1)
         with self.assertRaises(WrongZooOrientationException):
             animal.is_inside_fence(0, 10, 10, 0)
 
-    def animal_is_inside_fence_y_false(self):
+    def test_animal_is_inside_fence_y_false(self):
         animal = Animal(2, 2)
         self.assertFalse(animal.is_inside_fence(0, 0, 1, 1))
 
@@ -113,11 +113,11 @@ class WhiteboxCondition(unittest.TestCase):
     # fence_start_x > self.x
     # ===||||||===
 
-    def animal_is_inside_fence_start_x_true(self):
+    def test_animal_is_inside_fence_start_x_true(self):
         animal = Animal(1, 1)
         self.assertFalse(animal.is_inside_fence(10, 0, 20, 10))
 
-    def animal_is_inside_fence_start_x_false(self):
+    def test_animal_is_inside_fence_start_x_false(self):
         animal = Animal(1, 1)
         self.assertTrue(animal.is_inside_fence(0, 0, 10, 10))
 
@@ -125,11 +125,11 @@ class WhiteboxCondition(unittest.TestCase):
     # fence_end_x < self.x
     # ===||||||===
 
-    def animal_is_inside_fence_end_x_true(self):
+    def test_animal_is_inside_fence_end_x_true(self):
         animal = Animal(1, 1)
         self.assertFalse(animal.is_inside_fence(-100, 0, 0, 10))
 
-    def animal_is_inside_fence_end_x_false(self):
+    def test_animal_is_inside_fence_end_x_false(self):
         animal = Animal(1, 1)
         self.assertTrue(animal.is_inside_fence(0, 0, 10, 10))
 
@@ -137,11 +137,11 @@ class WhiteboxCondition(unittest.TestCase):
     # fence_start_y > self.y
     # ===||||||===
 
-    def animal_is_inside_fence_start_y_true(self):
+    def test_animal_is_inside_fence_start_y_true(self):
         animal = Animal(1, 1)
         self.assertFalse(animal.is_inside_fence(0, 10, 10, 20))
 
-    def animal_is_inside_fence_start_y_false(self):
+    def test_animal_is_inside_fence_start_y_false(self):
         animal = Animal(1, 1)
         self.assertTrue(animal.is_inside_fence(0, 0, 10, 10))
 
@@ -149,11 +149,11 @@ class WhiteboxCondition(unittest.TestCase):
     # fence_end_y < self.y
     # ===||||||===
 
-    def animal_is_inside_fence_end_y_true(self):
+    def test_animal_is_inside_fence_end_y_true(self):
         animal = Animal(1, 1)
         self.assertFalse(animal.is_inside_fence(0, -100, 10, 0))
 
-    def animal_is_inside_fence_end_y_false(self):
+    def test_animal_is_inside_fence_end_y_false(self):
         animal = Animal(1, 1)
         self.assertTrue(animal.is_inside_fence(0, 0, 10, 10))
 
