@@ -5,6 +5,7 @@ from problem import (
     OutOfBoundsException, WrongZooOrientationException
 )
 
+
 class WhiteboxBranch(unittest.TestCase):
     def test_valid_values(self):
         self.assertEqual(
@@ -26,7 +27,7 @@ class WhiteboxBranch(unittest.TestCase):
                 zoos_coords=[(0, 0, 1000, 1000),
                              (-1000, -1000, 0, 0)]
             )
-    
+
     def test_number_of_zoos_branch(self):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(
