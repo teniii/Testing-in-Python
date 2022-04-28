@@ -57,7 +57,8 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(
                 no_animals=7,
-                animals_coords=[(0, 0), (1, 0), (2, 0), (0, 1), (1, 1), (0, 2), (0, 3)],
+                animals_coords=[(0, 0), (1, 0), (2, 0),
+                                (0, 1), (1, 1), (0, 2), (0, 3)],
                 no_zoos=2,
                 zoos_coords=[(0, 0, 1000, 1000),
                              (-1000, -1000, 0, 0)]
@@ -83,7 +84,7 @@ class MyTestCase(unittest.TestCase):
                              (-1000, -1000, 0, 0),
                              (2000, 2000, 3000, 3000),
                              (-3000, -3000, 2000, 2000),
-                             (2000, 2000, 3000, 3000),]
+                             (2000, 2000, 3000, 3000), ]
             )
 
     def test_too_few_zoos(self):
@@ -155,7 +156,8 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(
                 no_animals=6,
-                animals_coords=[(500, 500),(501, 500),(502, 500),(503, 500),(504, 500),(505, 500)],
+                animals_coords=[(500, 500), (501, 500), (502, 500),
+                                (503, 500), (504, 500), (505, 500)],
                 no_zoos=2,
                 zoos_coords=[(0, 0, 1000, 1000), (-1000, 0, -1000, 0)]
             )
@@ -191,9 +193,10 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(
                 no_animals=2,
-                animals_coords=[(500, 500),(501, 500)],
+                animals_coords=[(500, 500), (501, 500)],
                 no_zoos=4,
-                zoos_coords=[(0, 0, 1000, 1000),(0, 0, 1000, 1000),(0, 0, 1000, 1000),(0, 0, 1000, 1000)]
+                zoos_coords=[(0, 0, 1000, 1000), (0, 0, 1000, 1000),
+                             (0, 0, 1000, 1000), (0, 0, 1000, 1000)]
             )
 
     def test_success_zoo_upper_boundary(self):
@@ -238,7 +241,8 @@ class MyTestCase(unittest.TestCase):
                 no_animals=1,
                 animals_coords=[(2000000000, 15)],
                 no_zoos=3,
-                zoos_coords=[(0, 0, 2000000000, 17), (0, 0, 1, 1), (0, 0, 1, 1)]
+                zoos_coords=[(0, 0, 2000000000, 17),
+                             (0, 0, 1, 1), (0, 0, 1, 1)]
             ), [1, 0, 0])
 
     def test_fail_zoo_fence_x_axis_boundary(self):
@@ -364,7 +368,8 @@ class MyTestCase(unittest.TestCase):
                 no_animals=1,
                 animals_coords=[(-2000000000, 15)],
                 no_zoos=3,
-                zoos_coords=[(0, 0, 500, 17), (-2000000000, 0, 0, 17), (0, 0, 500, 17)]
+                zoos_coords=[(0, 0, 500, 17), (-2000000000,
+                                               0, 0, 17), (0, 0, 500, 17)]
             ), [0, 1, 0])
 
     def test_success_n3z5c4(self):
@@ -380,7 +385,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(
             solve_problem(
                 no_animals=2,
-                animals_coords=[(0, 15),(5, 25)],
+                animals_coords=[(0, 15), (5, 25)],
                 no_zoos=1,
                 zoos_coords=[(-2000000000, 0, 500, 17)]
             ), [1])
@@ -389,7 +394,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(
             solve_problem(
                 no_animals=2,
-                animals_coords=[(0, 15),(5, 25)],
+                animals_coords=[(0, 15), (5, 25)],
                 no_zoos=1,
                 zoos_coords=[(10, 0, 500, 17)]
             ), [0])
@@ -409,8 +414,9 @@ class MyTestCase(unittest.TestCase):
                 no_animals=2,
                 animals_coords=[(0, 15), (5, 25)],
                 no_zoos=2,
-                zoos_coords=[(-2000000000, -2000000000, 15, 0), (-2000000000, 0, 10, 60)]
-            ), [0,2])
+                zoos_coords=[(-2000000000, -2000000000, 15, 0),
+                             (-2000000000, 0, 10, 60)]
+            ), [0, 2])
 
     def test_success_n4z4c4(self):
         self.assertEqual(
@@ -419,7 +425,7 @@ class MyTestCase(unittest.TestCase):
                 animals_coords=[(0, 15), (5, 25)],
                 no_zoos=2,
                 zoos_coords=[(-50, -20, 15, 0), (-20, 0, 10, 60)]
-            ), [0,2])
+            ), [0, 2])
 
     def test_success_n4z4c5(self):
         self.assertEqual(
@@ -427,8 +433,9 @@ class MyTestCase(unittest.TestCase):
                 no_animals=2,
                 animals_coords=[(0, 15), (5, 25)],
                 no_zoos=2,
-                zoos_coords=[(-50, -20, 2000000000, 2000000000), (-20, 0, 10, 2000000000)]
-            ), [2,2])
+                zoos_coords=[(-50, -20, 2000000000, 2000000000),
+                             (-20, 0, 10, 2000000000)]
+            ), [2, 2])
 
     def test_success_n4z5c3(self):
         self.assertEqual(
@@ -436,8 +443,9 @@ class MyTestCase(unittest.TestCase):
                 no_animals=2,
                 animals_coords=[(-2000000000, 15), (5, 25)],
                 no_zoos=3,
-                zoos_coords=[(-2000000000, -2000000000, 0, 0), (-2000000000, 0, 0, 500), (-50, -2000000000, 20, 700)]
-            ), [0,1,1])
+                zoos_coords=[(-2000000000, -2000000000, 0, 0),
+                             (-2000000000, 0, 0, 500), (-50, -2000000000, 20, 700)]
+            ), [0, 1, 1])
 
     def test_success_n4z5c4(self):
         self.assertEqual(
@@ -445,8 +453,9 @@ class MyTestCase(unittest.TestCase):
                 no_animals=2,
                 animals_coords=[(0, 15), (5, 25)],
                 no_zoos=3,
-                zoos_coords=[(-60, -60, 0, 0), (-800, 0, 0, 500), (-50, -70, 20, 700)]
-            ), [0,1,2])
+                zoos_coords=[(-60, -60, 0, 0), (-800, 0, 0, 500),
+                             (-50, -70, 20, 700)]
+            ), [0, 1, 2])
 
     def test_success_n4z5c5(self):
         self.assertEqual(
@@ -454,8 +463,9 @@ class MyTestCase(unittest.TestCase):
                 no_animals=2,
                 animals_coords=[(0, 2000000000), (2000000000, 25)],
                 no_zoos=3,
-                zoos_coords=[(-50, -20, 2000000000, 2000000000), (-20, 0, 10, 2000000000), (-20, 0, 2000000000, 10)]
-            ), [2,1,0])
+                zoos_coords=[(-50, -20, 2000000000, 2000000000),
+                             (-20, 0, 10, 2000000000), (-20, 0, 2000000000, 10)]
+            ), [2, 1, 0])
 
     def test_success_n5z3c3(self):
         self.assertEqual(
@@ -479,7 +489,8 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(
             solve_problem(
                 no_animals=5,
-                animals_coords=[(2000000000, 20), (5, 2000000000), (2, 15), (15, 55), (0, 40)],
+                animals_coords=[(2000000000, 20), (5, 2000000000),
+                                (2, 15), (15, 55), (0, 40)],
                 no_zoos=1,
                 zoos_coords=[(-10, 0, 0, 2000000000)]
             ), [1])
@@ -488,37 +499,46 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(
             solve_problem(
                 no_animals=5,
-                animals_coords=[(-2000000000, 20), (5, -2000000000), (2, 15), (15, 55), (0, 40)],
+                animals_coords=[(-2000000000, 20),
+                                (5, -2000000000), (2, 15), (15, 55), (0, 40)],
                 no_zoos=2,
-                zoos_coords=[(-2000000000, 0, 0, 50), (-50, -2000000000, 0, 50)]
-            ), [2,1])
+                zoos_coords=[(-2000000000, 0, 0, 50),
+                             (-50, -2000000000, 0, 50)]
+            ), [2, 1])
 
     def test_success_n5z4c5(self):
         self.assertEqual(
             solve_problem(
                 no_animals=5,
-                animals_coords=[(20, 2000000000), (2000000000, 40), (2, 15), (15, 55), (0, 40)],
+                animals_coords=[(20, 2000000000), (2000000000,
+                                                   40), (2, 15), (15, 55), (0, 40)],
                 no_zoos=2,
-                zoos_coords=[(-20, 0, 2000000000, 50), (-50, 30, 0, 2000000000)]
-            ), [3,1])
+                zoos_coords=[(-20, 0, 2000000000, 50),
+                             (-50, 30, 0, 2000000000)]
+            ), [3, 1])
 
     def test_success_n5z5c3(self):
         self.assertEqual(
             solve_problem(
                 no_animals=5,
-                animals_coords=[(20, -2000000000), (-2000000000, 40), (-2000000000, -2000000000), (15, 55), (0, 40)],
+                animals_coords=[(20, -2000000000), (-2000000000, 40),
+                                (-2000000000, -2000000000), (15, 55), (0, 40)],
                 no_zoos=3,
-                zoos_coords=[(-2000000000, 0, 70, 50), (-50, -2000000000, 0, 60), (-2000000000, -2000000000, 70, 50)]
-            ), [2,1,4])
+                zoos_coords=[(-2000000000, 0, 70, 50), (-50, -2000000000,
+                                                        0, 60), (-2000000000, -2000000000, 70, 50)]
+            ), [2, 1, 4])
 
     def test_success_n5z5c5(self):
         self.assertEqual(
             solve_problem(
                 no_animals=5,
-                animals_coords=[(20, 2000000000), (2000000000, 40), (2000000000, 2000000000), (15, 55), (0, 40)],
+                animals_coords=[(20, 2000000000), (2000000000, 40),
+                                (2000000000, 2000000000), (15, 55), (0, 40)],
                 no_zoos=3,
-                zoos_coords=[(-70, 0, 70, 2000000000), (-50, -30, 2000000000, 60), (-60, -13, 2000000000, 2000000000)]
-            ), [3,3,5])
+                zoos_coords=[(-70, 0, 70, 2000000000), (-50, -30,
+                                                        2000000000, 60), (-60, -13, 2000000000, 2000000000)]
+            ), [3, 3, 5])
+
 
 if __name__ == '__main__':
     unittest.main()
