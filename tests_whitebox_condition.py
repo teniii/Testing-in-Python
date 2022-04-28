@@ -11,21 +11,6 @@ from limits import COORD_MAX, COORD_MIN
 
 
 class WhiteboxCondition(unittest.TestCase):
-
-    def test_valid_problem(self):
-        self.assertEqual(
-            solve_problem(
-                no_animals=5,
-                animals_coords=[(0, 0), (1, 0), (2, 0), (0, 1), (1, 1)],
-                no_zoos=3,
-                zoos_coords=[(0, 0, 1000, 1000),
-                             (-1000, -1000, 0, 0), (1, 0, 2, 2)]
-            ), [5, 1, 3])
-
-    def test_sp_if_is_in_range_animal_false(self):
-        with self.assertRaises(OutOfBoundsException):
-            solve_problem(2, [(0, 0), (1, 0)], 0, [])
-
     def test_sp_if_is_in_range_animal_true(self):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(0, [], 0, [])
@@ -33,11 +18,6 @@ class WhiteboxCondition(unittest.TestCase):
     def test_sp_if_is_in_range_zoo_true(self):
         with self.assertRaises(OutOfBoundsException):
             solve_problem(2, [(0, 0), (1, 0)], 0, [])
-
-    def test_sp_if_is_in_range_zoo_false(self):
-        with self.assertRaises(OutOfBoundsException):
-            solve_problem(2, [(0, 0), (1, 0)], 6, [
-                          (0, 0, 1000, 1000), (-1000, -1000, 0, 0)])
 
     def test_sp_if_is_in_range_all_coords_true(self):
         with self.assertRaises(OutOfBoundsException):
