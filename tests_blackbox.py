@@ -418,9 +418,9 @@ class MyTestCase(unittest.TestCase):
 #
 # By removing the ones we did in the previosly methods:
 #
-#   n3z3c5r9o1 n3z4c3r9o1 n3z4c5r9o1 n3z5c3r9o1 n3z5c4r9o1
+#   n3z3c4r9o1 n3z4c3r9o1 n3z4c4r9o1 n3z4c5r9o1 n3z5c4r9o1
 #   n4z3c3r9o1 n4z3c4r9o1 n4z3c5r9o1 n4z4c3r9o1 n4z4c4r9o1 n4z4c5r9o1 n4z5c3r9o1 n4z5c4r9o1 n4z5c5r9o1
-#   n5z3c3r9o1 n5z3c4r9o1 n5z3c5r9o1 n5z4c3r9o1 n5z4c5r9o1 n5z5c3r9o1 n5z5c4r9o1 n5z5c5r9o1
+#   n5z3c4r9o1 n5z4c3r9o1 n5z4c4r9o1 n5z4c5r9o1 n5z5c4r9o1
 #
     def test_success_n3z3c4(self):
         self.assertEqual(
